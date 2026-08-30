@@ -1,0 +1,730 @@
+/* ================= BESPOKE ROYAL STATIONERY PALETTE ================= */
+:root {
+  --bg-beige-page: #f9f5ee;
+  --color-maroon: #781919;
+  --color-amber: #b86e10;
+  --color-gold: #c88120;
+  --color-gold-foil: linear-gradient(135deg, #f5d799 0%, #caa061 50%, #f7e0b5 100%);
+  --color-brown: #3e220e;
+  --color-muted: #6e5847;
+  --border-gold: #dec193;
+  --border-gold-glow: rgba(222, 193, 147, 0.45);
+  --font-script: 'Great Vibes', cursive;
+  --font-cinzel: 'Cinzel', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-beige-page);
+  color: var(--color-brown);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ================= FULL-PAGE BACKGROUND ARTWORK ================= */
+.site-bg-layer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url('assets/images/background.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% auto;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* ================= 3D LAYERED WHITE PETALS ================= */
+.petals-container { 
+  position: fixed; 
+  inset: 0; 
+  pointer-events: none; 
+  overflow: hidden; 
+}
+.petals-bg { z-index: 1; }
+.petals-fg { z-index: 85; }
+
+.falling-petal { 
+  position: absolute; 
+  top: -40px; 
+  pointer-events: none; 
+  animation: fallDown linear forwards; 
+}
+.falling-petal svg { 
+  display: block; 
+  animation: petalSway ease-in-out infinite alternate; 
+}
+.petal-depth-bg { 
+  filter: blur(1.5px) drop-shadow(0 2px 6px rgba(180, 160, 130, 0.25)); 
+}
+.petal-depth-fg { 
+  filter: drop-shadow(0 6px 14px rgba(74, 44, 22, 0.18)); 
+  opacity: 0.95; 
+}
+
+@keyframes fallDown { 
+  0% { top: -6%; opacity: 0; } 
+  10% { opacity: 0.9; } 
+  90% { opacity: 0.9; } 
+  100% { top: 105%; opacity: 0; } 
+}
+
+@keyframes petalSway { 
+  0% { transform: rotate(0deg) rotateY(0deg) translateX(-18px); } 
+  100% { transform: rotate(45deg) rotateY(180deg) translateX(18px); } 
+}
+
+/* ================= FLOATING MUSIC CONTROL ================= */
+.music-toggle-btn {
+  position: fixed; 
+  top: 18px; 
+  right: 18px; 
+  z-index: 95; 
+  width: 44px; 
+  height: 44px;
+  border-radius: 50%; 
+  background: rgba(253, 250, 244, 0.94); 
+  border: 1.5px solid var(--border-gold);
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(74, 44, 22, 0.16); 
+  backdrop-filter: blur(8px);
+}
+
+.music-wave { 
+  position: absolute; 
+  bottom: 6px; 
+  display: flex; 
+  gap: 2px; 
+  height: 8px; 
+}
+.music-wave span { 
+  width: 2px; 
+  height: 100%; 
+  background: var(--color-maroon); 
+  border-radius: 1px; 
+  animation: wave 1s infinite ease-in-out alternate; 
+}
+.music-wave span:nth-child(2) { animation-delay: 0.2s; height: 60%; }
+.music-wave span:nth-child(3) { animation-delay: 0.4s; height: 80%; }
+.music-paused .music-wave span { animation: none; height: 2px !important; }
+
+@keyframes wave { 
+  0% { height: 2px; } 
+  100% { height: 8px; } 
+}
+
+/* ================= 1. VIDEO ENVELOPE THEATRE ================= */
+.envelope-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 45%, #ffffff 0%, #f4ede4 100%);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s ease;
+  overflow: hidden;
+  opacity: 1;
+}
+
+.envelope-screen.fading-out {
+  opacity: 0 !important;
+  transform: scale(1.03);
+  pointer-events: none !important;
+}
+
+.video-envelope-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 480px;
+  max-height: 850px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.envelope-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+  box-shadow: 0 30px 80px rgba(74, 44, 22, 0.25);
+  transition: opacity 0.8s ease;
+}
+
+/* ================= LUXURY ROYAL TAP BADGE ================= */
+.video-interactive-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 8, 8, 0.25);
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.video-interactive-overlay.overlay-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden;
+}
+
+.royal-glass-badge {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 36px;
+  background: radial-gradient(circle at center, rgba(42, 16, 16, 0.65) 0%, rgba(20, 6, 6, 0.78) 100%);
+  border: 1px solid rgba(222, 193, 147, 0.7);
+  outline: 1px solid rgba(245, 215, 153, 0.3);
+  outline-offset: -4px;
+  border-radius: 40px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 235, 195, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transform: scale(1);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+}
+
+.royal-glass-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), 0 0 20px rgba(212, 163, 89, 0.3);
+}
+
+.royal-ornament-top {
+  font-size: 0.75rem;
+  color: #dec193;
+  margin-bottom: 2px;
+  text-shadow: 0 0 8px rgba(222, 193, 147, 0.8);
+}
+
+.badge-title {
+  font-family: var(--font-cinzel);
+  font-size: 0.64rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  color: #f7e6c4;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.badge-gold-line {
+  width: 36px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #dec193, transparent);
+  margin: 6px 0;
+}
+
+.badge-text {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, #fff7e6 0%, #ecd4a4 60%, #c89e5a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.badge-pulse-ring {
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(222, 193, 147, 0.45);
+  border-radius: 46px;
+  animation: royalGlow 2.4s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes royalGlow {
+  0% { transform: scale(0.96); opacity: 0.8; }
+  50% { transform: scale(1.06); opacity: 0.15; }
+  100% { transform: scale(0.96); opacity: 0.8; }
+}
+
+/* ================= FLYING DOVES ================= */
+.doves-container { 
+  position: absolute; 
+  inset: 0; 
+  z-index: 25; 
+  pointer-events: none; 
+}
+
+.flying-dove { 
+  position: absolute; 
+  width: 54px; 
+  height: 54px; 
+  opacity: 0; 
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15)); 
+}
+.flying-dove svg.dove-wing { 
+  transform-origin: 20px 24px; 
+  animation: flapWing 0.22s ease-in-out infinite alternate; 
+}
+
+@keyframes flapWing { 
+  0% { transform: rotate(0deg) scaleY(1); } 
+  100% { transform: rotate(-30deg) scaleY(0.75); } 
+}
+
+.dove-left { animation: flyDoveLeft 2.2s ease forwards; }
+@keyframes flyDoveLeft { 
+  0% { bottom: 40%; left: 45%; opacity: 0; transform: scale(0.6) rotate(-15deg); } 
+  30% { opacity: 1; } 
+  100% { bottom: 95%; left: -15%; opacity: 0; transform: scale(1.1) rotate(-35deg); } 
+}
+
+.dove-right { animation: flyDoveRight 2.4s ease forwards; }
+@keyframes flyDoveRight { 
+  0% { bottom: 40%; right: 45%; opacity: 0; transform: scale(0.6) rotate(15deg); } 
+  30% { opacity: 1; } 
+  100% { bottom: 95%; right: -15%; opacity: 0; transform: scale(1.15) rotate(35deg); } 
+}
+
+.dove-center { animation: flyDoveCenter 2.6s ease forwards; }
+@keyframes flyDoveCenter { 
+  0% { bottom: 45%; left: 50%; opacity: 0; transform: translateX(-50%) scale(0.6); } 
+  25% { opacity: 1; } 
+  100% { bottom: 105%; left: 50%; opacity: 0; transform: translateX(-50%) scale(1.2); } 
+}
+
+/* ================= 2. MAIN SCROLL PAGES (INCREASED GAPS & SCALING) ================= */
+.main-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.main-content.visible {
+  opacity: 1 !important;
+}
+
+/* Page 1 (Hero) fills initial screen */
+.scroll-page.hero-page {
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  margin-bottom: 20px;
+}
+
+/* Balanced section spacing */
+.scroll-page {
+  width: 100%;
+  min-height: auto;
+  padding: 44px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* HERO PAGE (Page 1) */
+.hero-content { 
+  text-align: center; 
+}
+.hero-page .groom-name, 
+.hero-page .bride-name {
+  font-family: var(--font-script);
+  font-size: clamp(3.2rem, 11vw, 4.2rem);
+  color: var(--color-maroon);
+  line-height: 1.1;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin: 4px 0;
+}
+.hero-page .and-symbol { 
+  font-family: var(--font-serif); 
+  font-size: 1.8rem; 
+  color: var(--color-amber); 
+}
+.getting-married-text { 
+  font-family: var(--font-serif); 
+  font-style: italic; 
+  font-size: 1.15rem; 
+  color: var(--color-muted); 
+  margin-top: 14px; 
+}
+.scroll-indicator { 
+  position: absolute; 
+  bottom: 24px; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  font-family: var(--font-cinzel); 
+  font-size: 0.68rem; 
+  letter-spacing: 0.2em; 
+  color: var(--color-amber); 
+  animation: bounceIndicator 2.2s infinite ease-in-out; 
+}
+.scroll-arrow { 
+  font-size: 1.1rem; 
+  margin-top: 4px; 
+}
+
+@keyframes bounceIndicator { 
+  0%, 100% { transform: translateY(0); } 
+  50% { transform: translateY(8px); } 
+}
+
+/* DETAILS PAGE (Page 2) */
+.details-content-box {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 38px 22px;
+  border-radius: 16px;
+  border: 1.5px solid var(--border-gold);
+  box-shadow: 0 10px 32px rgba(74, 44, 22, 0.07);
+  backdrop-filter: blur(8px);
+  width: 100%;
+}
+.bismillah-line { 
+  font-family: var(--font-serif); 
+  font-size: 0.92rem; 
+  font-style: italic; 
+  color: var(--color-amber); 
+  margin-bottom: 12px; 
+}
+.invite-line { 
+  font-family: var(--font-serif); 
+  font-size: 1.1rem; 
+  color: var(--color-muted); 
+}
+.parents-block { 
+  margin: 16px 0; 
+}
+.parent-names { 
+  font-family: var(--font-serif); 
+  font-size: 1.18rem; 
+  font-weight: 600; 
+  color: var(--color-maroon); 
+  line-height: 1.4; 
+}
+.parent-and { 
+  font-family: var(--font-serif); 
+  font-size: 0.95rem; 
+  color: var(--color-amber); 
+  margin: 4px 0; 
+  display: block; 
+}
+.personal-invite-tag { 
+  font-size: 0.72rem; 
+  text-transform: uppercase; 
+  letter-spacing: 0.15em; 
+  color: var(--color-muted); 
+  margin-top: 12px; 
+}
+.quote-box { 
+  margin-top: 20px; 
+  padding-top: 20px; 
+  border-top: 1px solid var(--border-gold-glow); 
+}
+.quran-verse { 
+  font-family: var(--font-serif); 
+  font-size: 0.98rem; 
+  font-style: italic; 
+  line-height: 1.5; 
+  color: var(--color-brown); 
+}
+.verse-reference { 
+  display: block; 
+  font-size: 0.74rem; 
+  font-weight: 600; 
+  color: var(--color-amber); 
+  margin-top: 8px; 
+}
+
+/* TRIPLE SCRATCH CARD PAGE (Page 3) */
+.section-top-ornament {
+  font-family: var(--font-cinzel);
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
+  color: var(--color-maroon);
+  margin-bottom: 22px;
+  text-transform: uppercase;
+}
+
+.triple-scratch-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.single-scratch-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.scratch-box-frame {
+  position: relative;
+  width: 100%;
+  height: 94px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #fffcf7 0%, #f7efe4 100%);
+  border: 1.5px solid var(--border-gold);
+  box-shadow: 0 8px 24px rgba(74, 44, 22, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+}
+
+.revealed-date-val {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 5.5vw, 1.8rem);
+  font-weight: 700;
+  color: var(--color-maroon);
+  letter-spacing: 0.05em;
+  user-select: none;
+}
+
+.scratch-canvas-item {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  z-index: 5;
+  transition: opacity 0.5s ease;
+}
+
+.scratch-canvas-item:active {
+  cursor: grabbing;
+}
+
+.scratch-unit-label {
+  font-family: var(--font-cinzel);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-top: 10px;
+}
+
+.reception-timing-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 10px 22px;
+  background: rgba(120, 25, 25, 0.08);
+  border: 1px solid rgba(120, 25, 25, 0.2);
+  border-radius: 24px;
+}
+.reception-pill-icon { 
+  font-size: 0.75rem; 
+}
+.reception-pill-text {
+  font-family: var(--font-cinzel);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-maroon);
+}
+
+/* COUNTDOWN PAGE (Page 4) */
+.countdown-wrap { 
+  text-align: center; 
+  width: 100%;
+}
+.countdown-heading { 
+  display: block; 
+  font-size: 0.8rem; 
+  text-transform: uppercase; 
+  letter-spacing: 0.15em; 
+  color: var(--color-maroon); 
+  font-family: var(--font-cinzel); 
+  margin-bottom: 20px; 
+}
+.timer-grid { 
+  display: flex; 
+  justify-content: center; 
+  gap: 12px; 
+}
+.timer-box.rounded-box { 
+  background: rgba(255, 255, 255, 0.9); 
+  border: 1.5px solid var(--border-gold); 
+  padding: 12px 14px; 
+  border-radius: 12px; 
+  flex: 1;
+  max-width: 80px;
+  box-shadow: 0 6px 20px rgba(74, 44, 22, 0.04); 
+}
+.timer-num { 
+  font-family: var(--font-serif); 
+  font-size: 1.6rem; 
+  font-weight: 600; 
+  color: var(--color-maroon); 
+  display: block; 
+}
+.timer-tag { 
+  font-size: 0.55rem; 
+  text-transform: uppercase; 
+  letter-spacing: 0.1em; 
+  color: var(--color-muted); 
+}
+
+/* VENUE PAGE (Page 5) */
+.royal-venue-pavilion { 
+  width: 100%; 
+}
+.pavilion-inner { 
+  position: relative; 
+  background: rgba(255, 253, 249, 0.94); 
+  border: 1.5px solid var(--border-gold); 
+  border-radius: 16px; 
+  padding: 30px 20px; 
+  text-align: center; 
+  box-shadow: 0 10px 35px rgba(74, 44, 22, 0.06); 
+}
+.pavilion-header { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 10px; 
+}
+.venue-icon-badge { 
+  width: 44px; 
+  height: 44px; 
+  border-radius: 50%; 
+  background: radial-gradient(circle, #fff, #f4ede4); 
+  border: 1px solid var(--border-gold); 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+.pin-symbol { font-size: 1.2rem; }
+.venue-label { 
+  display: block; 
+  font-family: var(--font-cinzel); 
+  font-size: 0.65rem; 
+  font-weight: 600; 
+  letter-spacing: 0.15em; 
+  color: var(--color-amber); 
+  text-transform: uppercase; 
+}
+.venue-name { 
+  font-family: var(--font-serif); 
+  font-size: 1.3rem; 
+  font-weight: 700; 
+  color: var(--color-maroon); 
+  margin: 4px 0; 
+}
+.venue-subline { 
+  font-size: 0.8rem; 
+  color: var(--color-muted); 
+  font-weight: 500; 
+  margin-bottom: 14px; 
+}
+.pavilion-gold-rule { 
+  height: 1px; 
+  background: linear-gradient(90deg, transparent, var(--border-gold), transparent); 
+  margin: 14px 0; 
+}
+.luxury-map-btn { 
+  position: relative; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 8px; 
+  padding: 12px 24px; 
+  background: linear-gradient(135deg, #781919 0%, #4a0d0d 100%); 
+  color: #f7e6c4; 
+  text-decoration: none; 
+  border-radius: 25px; 
+  font-family: var(--font-cinzel); 
+  font-size: 0.72rem; 
+  font-weight: 600; 
+  letter-spacing: 0.1em; 
+  text-transform: uppercase; 
+  box-shadow: 0 4px 16px rgba(120, 25, 25, 0.28); 
+  transition: transform 0.2s ease; 
+}
+.luxury-map-btn:active { 
+  transform: scale(0.97); 
+}
+
+/* FOOTER (No Hashtags) */
+.site-footer { 
+  text-align: center; 
+  padding: 30px 20px 50px 20px; 
+  width: 100%; 
+}
+.footer-names { 
+  font-family: var(--font-script); 
+  font-size: 2.1rem; 
+  color: var(--color-maroon); 
+}
+.footer-date-line { 
+  font-family: var(--font-serif); 
+  font-size: 0.85rem; 
+  letter-spacing: 0.1em; 
+  color: var(--color-muted); 
+  margin-top: 4px; 
+}
+
+/* Dividers & Reveals */
+.ornament-divider { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 10px; 
+  margin: 12px 0 16px 0; 
+}
+.ornament-divider .line { 
+  flex: 1; 
+  height: 1px; 
+  background: linear-gradient(90deg, transparent, var(--border-gold), transparent); 
+}
+.ornament-divider .diamond { 
+  color: var(--color-amber); 
+  font-size: 0.65rem; 
+}
+
+.reveal { 
+  opacity: 0; 
+  transform: translateY(30px); 
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+.reveal.active { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
+
+.hidden { 
+  display: none !important; 
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Wedding Invitation | Mohammed Daniyal &amp; Sana</title>
+  <!-- Google Fonts: Luxury Royal Script, Classical Serif & Modern Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- 3D LAYER 1: Background Petals -->
+  <div id="petals-bg" class="petals-container petals-bg"></div>
+
+  <!-- Background Audio -->
+  <audio id="wedding-audio" loop preload="auto">
+    <source src="assets/audio/wedding-music.mp3" type="audio/mpeg" />
+    <source src="assets/wedding-music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Floating Music Control Toggle -->
+  <button id="music-toggle" class="music-toggle-btn hidden" aria-label="Toggle Music">
+    <span class="music-icon" id="music-icon"></span>
+    <span class="music-wave">
+      <span></span><span></span><span></span>
+    </span>
+  </button>
+
+  <!-- ================= 1. PHOTOREALISTIC VIDEO ENVELOPE SCREEN ================= -->
+  <section id="envelope-screen" class="envelope-screen">
+    <div class="video-envelope-wrapper">
+      <!-- Flying Doves Container -->
+      <div id="doves-container" class="doves-container"></div>
+
+      <!-- Real Envelope Opening Video -->
+      <video
+        id="envelope-video"
+        class="envelope-video-player"
+        playsinline
+        preload="auto"
+        muted
+      >
+        <source src="assets/videos/envelope-video.mp4" type="video/mp4" />
+        <source src="assets/videos/envelope-video.webm" type="video/webm" />
+        <source src="assets/videos/envelope-video.mov" type="video/quicktime" />
+        <source src="assets/envelope-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Interactive Tap Overlay (Luxury Gold & Champagne Frosted Glass) -->
+      <div class="video-interactive-overlay" id="video-tap-trigger">
+        <div class="video-tap-badge royal-glass-badge">
+          <span class="royal-ornament-top">✦</span>
+          <span class="badge-title">Wedding Invitation</span>
+          <div class="badge-gold-line"></div>
+          <span class="badge-text">Tap to Open</span>
+          <span class="badge-pulse-ring"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 2. MOBILE-FIRST SCROLLABLE INVITATION ================= -->
+  <main id="main-content" class="main-content hidden">
+    <!-- Background Frame (Shows full artwork vertically) -->
+    <div class="site-bg-layer"></div>
+
+    <!-- PAGE 1: HERO (Names Only) -->
+    <section class="scroll-page hero-page reveal active">
+      <div class="hero-content">
+        <h1 class="groom-name">Mohammed Daniyal</h1>
+        <span class="and-symbol">&amp;</span>
+        <h1 class="bride-name">Sana</h1>
+        <p class="getting-married-text">are getting married...</p>
+      </div>
+      <div class="scroll-indicator">
+        <span>Scroll Down</span>
+        <div class="scroll-arrow">↓</div>
+      </div>
+    </section>
+
+    <!-- PAGE 2: DETAILS & FAMILIES -->
+    <section class="scroll-page details-page reveal">
+      <div class="details-content-box">
+        <p class="bismillah-line">In the Name of Allah, the Most Gracious, the Most Merciful</p>
+        <div class="ornament-divider">
+          <span class="line"></span><span class="diamond">◆</span><span class="line"></span>
+        </div>
+        <p class="invite-line">Together with our beloved families</p>
+        <div class="parents-block">
+          <p class="parent-names">Mr. &amp; Mrs. Ismail Gilani Momin</p>
+          <span class="parent-and">&amp;</span>
+          <p class="parent-names">Mr. &amp; Mrs. Zainuddin Imamuddin Shaikh</p>
+        </div>
+        <p class="personal-invite-tag">joyfully invite you to celebrate with us</p>
+        <div class="quote-box">
+          <p class="quran-verse">
+            "And of His signs is that He created for you from yourselves mates that you may find tranquility in them..."
+          </p>
+          <span class="verse-reference">- Surah Ar-Rum (30:21)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: TRIPLE SCRATCH REVEAL (Day, Month, Year) -->
+    <section class="scroll-page scratch-page reveal">
+      <span class="section-top-ornament">✦ Scratch to reveal the date ✦</span>
+      <div class="triple-scratch-container">
+        <!-- Day Card -->
+        <div class="single-scratch-unit">
+          <div class="scratch-box-frame">
+            <div class="revealed-date-val">27</div>
+            <canvas id="scratch-canvas-day" class="scratch-canvas-item"></canvas>
+          </div>
+          <span class="scratch-unit-label">Day</span>
+        </div>
+
+        <!-- Month Card -->
+        <div class="single-scratch-unit">
+          <div class="scratch-box-frame">
+            <div class="revealed-date-val">09</div>
+            <canvas id="scratch-canvas-month" class="scratch-canvas-item"></canvas>
+          </div>
+          <span class="scratch-unit-label">Month</span>
+        </div>
+
+        <!-- Year Card -->
+        <div class="single-scratch-unit">
+          <div class="scratch-box-frame">
+            <div class="revealed-date-val">2026</div>
+            <canvas id="scratch-canvas-year" class="scratch-canvas-item"></canvas>
+          </div>
+          <span class="scratch-unit-label">Year</span>
+        </div>
+      </div>
+
+      <!-- Reception Time Banner Under Date -->
+      <div class="reception-timing-pill">
+        <span class="reception-pill-icon">✨</span>
+        <span class="reception-pill-text">Reception Dinner • 7:00 PM Onwards</span>
+      </div>
+    </section>
+
+    <!-- PAGE 4: LIVE COUNTDOWN -->
+    <section class="scroll-page countdown-page reveal">
+      <div class="countdown-wrap">
+        <span class="countdown-heading">Counting Down The Days</span>
+        <div class="timer-grid" id="countdown-timer">
+          <div class="timer-box rounded-box">
+            <span class="timer-num" id="days">00</span>
+            <span class="timer-tag">Days</span>
+          </div>
+          <div class="timer-box rounded-box">
+            <span class="timer-num" id="hours">00</span>
+            <span class="timer-tag">Hours</span>
+          </div>
+          <div class="timer-box rounded-box">
+            <span class="timer-num" id="minutes">00</span>
+            <span class="timer-tag">Mins</span>
+          </div>
+          <div class="timer-box rounded-box">
+            <span class="timer-num" id="seconds">00</span>
+            <span class="timer-tag">Secs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 5: VENUE & MAP -->
+    <section class="scroll-page venue-page reveal">
+      <div class="royal-venue-pavilion">
+        <div class="pavilion-inner">
+          <div class="pavilion-header">
+            <div class="venue-icon-badge"><span class="pin-symbol">📍</span></div>
+            <div class="venue-titles">
+              <span class="venue-label">Reception Venue</span>
+              <h3 class="venue-name">Dr. Babasaheb Ambedkar Garden</h3>
+              <p class="venue-subline">Mangal Karyalay Dhanori, Pune</p>
+            </div>
+          </div>
+          <div class="pavilion-gold-rule"></div>
+          <div class="pavilion-actions">
+            <a href="https://maps.google.com/?q=Dr.+Babasaheb+Ambedkar+Garden+Mangal+Karyalay+Dhanori+Pune" target="_blank" rel="noopener noreferrer" class="luxury-map-btn">
+              <span class="btn-shine"></span>
+              <span class="btn-text">Open in Google Maps</span>
+              <span class="btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer (No Hashtags) -->
+    <footer class="site-footer">
+      <p class="footer-names">Mohammed Daniyal &amp; Sana</p>
+      <p class="footer-date-line">September 27, 2026 • Pune</p>
+    </footer>
+  </main>
+
+  <!-- 3D LAYER 2: Foreground Petals -->
+  <div id="petals-fg" class="petals-container petals-fg"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
