@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const envelopeVideo = document.getElementById('envelope-video');
   const videoTapTrigger = document.getElementById('video-tap-trigger');
   const mainContent = document.getElementById('main-content');
-  const dovesContainer = document.getElementById('doves-container');
   const petalsBg = document.getElementById('petals-bg');
   const petalsFg = document.getElementById('petals-fg');
   const weddingAudio = document.getElementById('wedding-audio');
@@ -29,40 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => observer.observe(el));
   }
 
-  // 2. Flying Doves SVG
-  function createDoveSVG() {
-    return `
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 40 C16 38, 22 36, 28 32 C34 28, 42 27, 48 30 C53 33, 56 31, 58 28 C60 26, 62 25, 64 26 C62 28, 59 29, 57 28 C50 34, 42 38, 36 41 C30 44, 22 46, 16 43 Z" fill="#FFFFFF" />
-        <path d="M12 40 C8 44, 4 50, 2 54 C6 52, 12 47, 16 43 Z" fill="#F4EDE4" />
-        <g class="dove-wing">
-          <path d="M26 30 C28 22, 34 10, 44 4 C40 9, 36 18, 33 26 C38 18, 45 10, 52 7 C48 14, 42 22, 38 30 Z" fill="#FFFFFF" />
-          <path d="M28 28 C32 20, 38 12, 46 8 C42 14, 38 21, 34 27 Z" fill="#E8DBC9" />
-        </g>
-        <path d="M57 28 C60 26, 62 25, 64 26 C62 28, 59 29, 57 28 Z" fill="#C57A18" />
-      </svg>
-    `;
-  }
-
-  function releaseFlyingDoves() {
-    if (!dovesContainer) return;
-    const doveConfigs = [
-      { class: 'dove-left', delay: 100 },
-      { class: 'dove-right', delay: 250 },
-      { class: 'dove-center', delay: 400 }
-    ];
-
-    doveConfigs.forEach(cfg => {
-      setTimeout(() => {
-        const doveEl = document.createElement('div');
-        doveEl.className = `flying-dove ${cfg.class}`;
-        doveEl.innerHTML = createDoveSVG();
-        dovesContainer.appendChild(doveEl);
-      }, cfg.delay);
-    });
-  }
-
-  // 3. 3D White Petals Engine
+  // 2. 3D White Petals Engine
   const whitePetalColors = [
     { fill: '#FFFFFF', vein: 'rgba(212, 139, 40, 0.45)' },
     { fill: '#FDFBF7', vein: 'rgba(230, 210, 180, 0.5)' },
@@ -105,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     petalInterval = setInterval(spawn3DPetal, 450);
   }
 
-  // 4. Triple Scratch-To-Reveal Logic (Plain Gold Foil)
+  // 3. Triple Scratch-To-Reveal Logic (Smooth Plain Gold Foil)
   function initSingleScratchCanvas(canvasId) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
@@ -166,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSingleScratchCanvas('scratch-canvas-year');
   }
 
-  // 5. Audio Controller
+  // 4. Audio Controller
   function startWeddingMusic() {
     if (weddingAudio) {
       weddingAudio.volume = 0.65;
@@ -192,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. Seamless Cross-Fade from Video into Landing Page
+  // 5. Seamless Cross-Fade from Video into Landing Page
   function transitionToInvitation() {
     if (transitionStarted) return;
     transitionStarted = true;
@@ -214,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1200);
   }
 
-  // 7. Video Envelope Trigger & Timing
+  // 6. Video Envelope Trigger & Timing
   if (videoTapTrigger && envelopeVideo) {
     videoTapTrigger.addEventListener('click', () => {
       if (videoStarted) return;
@@ -222,7 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       videoTapTrigger.classList.add('overlay-hidden');
       startWeddingMusic();
-      releaseFlyingDoves();
 
       envelopeVideo.play().catch(err => {
         console.warn("Video playback error:", err);
@@ -244,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 8. Live Countdown (Target: Sunday, Sept 27, 2026, 19:00 IST)
+  // 7. Live Countdown (Target: Sunday, Sept 27, 2026, 19:00 IST)
   function startCountdown() {
     const targetDate = new Date('2026-09-27T19:00:00+05:30').getTime();
 

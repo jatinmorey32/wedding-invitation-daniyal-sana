@@ -260,53 +260,7 @@ body {
   100% { transform: scale(0.96); opacity: 0.8; }
 }
 
-/* ================= FLYING DOVES ================= */
-.doves-container { 
-  position: absolute; 
-  inset: 0; 
-  z-index: 25; 
-  pointer-events: none; 
-}
-
-.flying-dove { 
-  position: absolute; 
-  width: 54px; 
-  height: 54px; 
-  opacity: 0; 
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15)); 
-}
-.flying-dove svg.dove-wing { 
-  transform-origin: 20px 24px; 
-  animation: flapWing 0.22s ease-in-out infinite alternate; 
-}
-
-@keyframes flapWing { 
-  0% { transform: rotate(0deg) scaleY(1); } 
-  100% { transform: rotate(-30deg) scaleY(0.75); } 
-}
-
-.dove-left { animation: flyDoveLeft 2.2s ease forwards; }
-@keyframes flyDoveLeft { 
-  0% { bottom: 40%; left: 45%; opacity: 0; transform: scale(0.6) rotate(-15deg); } 
-  30% { opacity: 1; } 
-  100% { bottom: 95%; left: -15%; opacity: 0; transform: scale(1.1) rotate(-35deg); } 
-}
-
-.dove-right { animation: flyDoveRight 2.4s ease forwards; }
-@keyframes flyDoveRight { 
-  0% { bottom: 40%; right: 45%; opacity: 0; transform: scale(0.6) rotate(15deg); } 
-  30% { opacity: 1; } 
-  100% { bottom: 95%; right: -15%; opacity: 0; transform: scale(1.15) rotate(35deg); } 
-}
-
-.dove-center { animation: flyDoveCenter 2.6s ease forwards; }
-@keyframes flyDoveCenter { 
-  0% { bottom: 45%; left: 50%; opacity: 0; transform: translateX(-50%) scale(0.6); } 
-  25% { opacity: 1; } 
-  100% { bottom: 105%; left: 50%; opacity: 0; transform: translateX(-50%) scale(1.2); } 
-}
-
-/* ================= 2. MAIN SCROLL PAGES (INCREASED GAPS & SCALING) ================= */
+/* ================= 2. MAIN SCROLL PAGES ================= */
 .main-content {
   position: relative;
   z-index: 10;
@@ -324,33 +278,33 @@ body {
   opacity: 1 !important;
 }
 
-/* Page 1 (Hero) fills initial screen */
+/* Page 1 (Hero) */
 .scroll-page.hero-page {
   min-height: 92vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
-  margin-bottom: 20px;
+  padding: 30px 20px 40px 20px;
 }
 
-/* Balanced section spacing */
-.scroll-page {
-  width: 100%;
-  min-height: auto;
-  padding: 44px 20px;
+.hero-content { 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-/* HERO PAGE (Page 1) */
-.hero-content { 
   text-align: center; 
 }
+
+/* Subtle Header Image */
+.hero-top-img {
+  width: clamp(70px, 22vw, 110px);
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 14px;
+  opacity: 0.88;
+  filter: drop-shadow(0 2px 6px rgba(74, 44, 22, 0.12));
+}
+
 .hero-page .groom-name, 
 .hero-page .bride-name {
   font-family: var(--font-script);
@@ -358,7 +312,7 @@ body {
   color: var(--color-maroon);
   line-height: 1.1;
   text-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  margin: 4px 0;
+  margin: 2px 0;
 }
 .hero-page .and-symbol { 
   font-family: var(--font-serif); 
@@ -370,7 +324,7 @@ body {
   font-style: italic; 
   font-size: 1.15rem; 
   color: var(--color-muted); 
-  margin-top: 14px; 
+  margin-top: 12px; 
 }
 .scroll-indicator { 
   position: absolute; 
@@ -392,6 +346,18 @@ body {
 @keyframes bounceIndicator { 
   0%, 100% { transform: translateY(0); } 
   50% { transform: translateY(8px); } 
+}
+
+/* General Page Section Spacing */
+.scroll-page {
+  width: 100%;
+  min-height: auto;
+  padding: 44px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 /* DETAILS PAGE (Page 2) */
@@ -678,23 +644,41 @@ body {
   transform: scale(0.97); 
 }
 
-/* FOOTER (No Hashtags) */
+/* FOOTER (Centered Footer Art & Large Date) */
 .site-footer { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center; 
-  padding: 30px 20px 50px 20px; 
+  padding: 20px 20px 50px 20px; 
   width: 100%; 
 }
-.footer-names { 
-  font-family: var(--font-script); 
-  font-size: 2.1rem; 
-  color: var(--color-maroon); 
+
+.footer-art-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 12px;
 }
+
+.footer-img {
+  width: clamp(140px, 45vw, 220px);
+  height: auto;
+  object-fit: contain;
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 12px rgba(74, 44, 22, 0.1));
+}
+
 .footer-date-line { 
   font-family: var(--font-serif); 
-  font-size: 0.85rem; 
-  letter-spacing: 0.1em; 
-  color: var(--color-muted); 
+  font-size: 1.15rem; 
+  font-weight: 600;
+  letter-spacing: 0.08em; 
+  color: var(--color-maroon); 
   margin-top: 4px; 
+  text-transform: uppercase;
 }
 
 /* Dividers & Reveals */

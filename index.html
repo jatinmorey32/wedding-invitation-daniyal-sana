@@ -8,6 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Open Graph / WhatsApp Preview Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Wedding Invitation | Mohammed Daniyal &amp; Sana" />
+  <meta property="og:description" content="In the Name of Allah, we joyfully invite you to celebrate with us. September 27, 2026." />
+  <meta property="og:image" content="https://wedding-invitation-daniyal-sana.vercel.app/assets/images/background.png" />
+  <meta property="og:url" content="https://wedding-invitation-daniyal-sana.vercel.app" />
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -32,9 +40,6 @@
   <!-- ================= 1. PHOTOREALISTIC VIDEO ENVELOPE SCREEN ================= -->
   <section id="envelope-screen" class="envelope-screen">
     <div class="video-envelope-wrapper">
-      <!-- Flying Doves Container -->
-      <div id="doves-container" class="doves-container"></div>
-
       <!-- Real Envelope Opening Video -->
       <video
         id="envelope-video"
@@ -65,12 +70,19 @@
 
   <!-- ================= 2. MOBILE-FIRST SCROLLABLE INVITATION ================= -->
   <main id="main-content" class="main-content hidden">
-    <!-- Background Frame (Shows full artwork vertically) -->
+    <!-- Background Frame -->
     <div class="site-bg-layer"></div>
 
-    <!-- PAGE 1: HERO (Names Only) -->
+    <!-- PAGE 1: HERO (Header Image + Names) -->
     <section class="scroll-page hero-page reveal active">
       <div class="hero-content">
+        <!-- Subtle Top Header Image -->
+        <img 
+          src="assets/header.png" 
+          alt="Royal Ornament Header" 
+          class="hero-top-img" 
+          onerror="this.src='assets/images/header.png'; this.onerror=null;"
+        />
         <h1 class="groom-name">Mohammed Daniyal</h1>
         <span class="and-symbol">&amp;</span>
         <h1 class="bride-name">Sana</h1>
@@ -193,9 +205,16 @@
       </div>
     </section>
 
-    <!-- Footer (No Hashtags) -->
+    <!-- Footer: Footer Image & Centered Wedding Date -->
     <footer class="site-footer">
-      <p class="footer-names">Mohammed Daniyal &amp; Sana</p>
+      <div class="footer-art-wrap">
+        <img 
+          src="assets/footer.png" 
+          alt="Royal Footer Artwork" 
+          class="footer-img" 
+          onerror="this.src='assets/images/footer.png'; this.onerror=null;"
+        />
+      </div>
       <p class="footer-date-line">September 27, 2026 • Pune</p>
     </footer>
   </main>
