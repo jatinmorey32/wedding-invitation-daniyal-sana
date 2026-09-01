@@ -295,14 +295,14 @@ body {
   text-align: center; 
 }
 
-/* Subtle Header Image */
+/* Header Image (Increased by 150%) */
 .hero-top-img {
-  width: clamp(70px, 22vw, 110px);
+  width: clamp(105px, 33vw, 165px);
   height: auto;
   object-fit: contain;
-  margin-bottom: 14px;
-  opacity: 0.88;
-  filter: drop-shadow(0 2px 6px rgba(74, 44, 22, 0.12));
+  margin-bottom: 16px;
+  opacity: 0.92;
+  filter: drop-shadow(0 3px 8px rgba(74, 44, 22, 0.14));
 }
 
 .hero-page .groom-name, 
@@ -644,7 +644,7 @@ body {
   transform: scale(0.97); 
 }
 
-/* FOOTER (Centered Footer Art & Large Date) */
+/* FOOTER (Centered 150% Larger Footer Art & Large Date) */
 .site-footer { 
   display: flex;
   flex-direction: column;
@@ -660,15 +660,16 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
+/* Footer Image (Increased by 150%) */
 .footer-img {
-  width: clamp(140px, 45vw, 220px);
+  width: clamp(210px, 68vw, 330px);
   height: auto;
   object-fit: contain;
-  opacity: 0.9;
-  filter: drop-shadow(0 4px 12px rgba(74, 44, 22, 0.1));
+  opacity: 0.95;
+  filter: drop-shadow(0 4px 14px rgba(74, 44, 22, 0.12));
 }
 
 .footer-date-line { 
