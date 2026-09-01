@@ -285,7 +285,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 30px 20px 40px 20px;
+  padding: 24px 20px 36px 20px;
 }
 
 .hero-content { 
@@ -295,14 +295,14 @@ body {
   text-align: center; 
 }
 
-/* Header Image (Increased by 150%) */
+/* Header Image (Increased by 100% relative to standard layout) */
 .hero-top-img {
-  width: clamp(105px, 33vw, 165px);
+  width: clamp(140px, 44vw, 220px);
   height: auto;
   object-fit: contain;
-  margin-bottom: 16px;
-  opacity: 0.92;
-  filter: drop-shadow(0 3px 8px rgba(74, 44, 22, 0.14));
+  margin-bottom: 14px;
+  opacity: 0.95;
+  filter: drop-shadow(0 3px 10px rgba(74, 44, 22, 0.16));
 }
 
 .hero-page .groom-name, 
@@ -644,14 +644,14 @@ body {
   transform: scale(0.97); 
 }
 
-/* FOOTER (Centered 150% Larger Footer Art & Large Date) */
+/* FOOTER (Compact Spacing Between Art & Date) */
 .site-footer { 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center; 
-  padding: 20px 20px 50px 20px; 
+  padding: 10px 20px 40px 20px; 
   width: 100%; 
 }
 
@@ -660,10 +660,9 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 4px; /* Minimal gap above date */
 }
 
-/* Footer Image (Increased by 150%) */
 .footer-img {
   width: clamp(210px, 68vw, 330px);
   height: auto;
@@ -678,7 +677,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.08em; 
   color: var(--color-maroon); 
-  margin-top: 4px; 
+  margin-top: 0; 
   text-transform: uppercase;
 }
 
