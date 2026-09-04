@@ -28,14 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => observer.observe(el));
   }
 
-  // 2. 3D White Petals Engine
-  const whitePetalColors = [
-    { fill: '#FFFFFF', vein: 'rgba(212, 139, 40, 0.45)' },
-    { fill: '#FDFBF7', vein: 'rgba(230, 210, 180, 0.5)' },
-    { fill: '#F7EFE2', vein: 'rgba(197, 122, 24, 0.35)' }
+  // 2. 3D Off-White & Cream Silk Petals Engine
+  const offWhitePetalColors = [
+    { fill: '#FAF5EE', vein: 'rgba(194, 148, 75, 0.4)' },
+    { fill: '#F5ECE1', vein: 'rgba(216, 186, 139, 0.45)' },
+    { fill: '#F9F3EA', vein: 'rgba(185, 137, 61, 0.35)' }
   ];
 
-  function createWhitePetalSVG(palette) {
+  function createOffWhitePetalSVG(palette) {
     return `<svg viewBox="0 0 30 30" width="100%" height="100%" fill="none"><path d="M15 2 C22 2, 28 8, 28 15 C28 22, 22 28, 15 28 C8 28, 2 22, 2 15 C2 8, 8 2, 15 2 Z" fill="${palette.fill}"/><path d="M15 4 Q16 15 15 26" stroke="${palette.vein}" stroke-width="0.8" fill="none"/></svg>`;
   }
 
@@ -51,13 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const left = Math.random() * 100;
     const duration = isForeground ? (Math.random() * 3 + 6) : (Math.random() * 4 + 8);
     const swayDuration = Math.random() * 2 + 2;
-    const palette = whitePetalColors[Math.floor(Math.random() * whitePetalColors.length)];
+    const palette = offWhitePetalColors[Math.floor(Math.random() * offWhitePetalColors.length)];
 
     petal.style.width = `${size}px`;
     petal.style.height = `${size}px`;
     petal.style.left = `${left}vw`;
     petal.style.animationDuration = `${duration}s`;
-    petal.innerHTML = createWhitePetalSVG(palette);
+    petal.innerHTML = createOffWhitePetalSVG(palette);
 
     const svg = petal.querySelector('svg');
     if (svg) svg.style.animationDuration = `${swayDuration}s`;
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     petalInterval = setInterval(spawn3DPetal, 450);
   }
 
-  // 3. Triple Scratch-To-Reveal Logic (Smooth Plain Gold Foil)
+  // 3. Triple Scratch-To-Reveal Logic (Warm Arabic Gold Foil)
   function initSingleScratchCanvas(canvasId) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
@@ -83,12 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.height = rect.height * dpr;
     ctx.scale(dpr, dpr);
 
-    // Smooth Plain Royal Gold Foil Gradient (No Stripes)
+    // Warm Antique Arabic Gold Foil Gradient
     const grad = ctx.createLinearGradient(0, 0, rect.width, rect.height);
-    grad.addColorStop(0, '#f2d699');
+    grad.addColorStop(0, '#fcedc5');
     grad.addColorStop(0.35, '#caa061');
     grad.addColorStop(0.7, '#deb36e');
-    grad.addColorStop(1, '#a87c34');
+    grad.addColorStop(1, '#9e732c');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, rect.width, rect.height);
 
