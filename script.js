@@ -83,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.height = rect.height * dpr;
     ctx.scale(dpr, dpr);
 
-    // Warm Antique Arabic Gold Foil Gradient
     const grad = ctx.createLinearGradient(0, 0, rect.width, rect.height);
     grad.addColorStop(0, '#fcedc5');
     grad.addColorStop(0.35, '#caa061');

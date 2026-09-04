@@ -1,12 +1,12 @@
 /* ================= BESPOKE ARABIC-ROYAL THEME PALETTE ================= */
 :root {
   --bg-sand-warm: #fbf5ef;
-  --color-garnet: #63131d;          /* Deep regal wine / garnet text */
-  --color-gold-antique: #b9893d;    /* Classical Islamic warm gold */
-  --color-gold-bright: #dfb76c;     /* Luminous accent gold */
+  --color-garnet: #63131d;
+  --color-gold-antique: #b9893d;
+  --color-gold-bright: #dfb76c;
   --color-gold-foil: linear-gradient(135deg, #fcedc5 0%, #caa061 50%, #f7e0b5 100%);
-  --color-espresso: #382015;        /* Body readable deep brown */
-  --color-muted-gold: #7d5b47;      /* Secondary text tone */
+  --color-espresso: #382015;
+  --color-muted-gold: #7d5b47;
   --border-gold-antique: #d8ba8b;
   --border-gold-glow: rgba(216, 186, 139, 0.55);
   
@@ -40,15 +40,8 @@ body {
   background-repeat: no-repeat;
   background-position: center top;
   background-size: 100% auto;
-  opacity: 0.94;
+  opacity: 0.95;
   pointer-events: none;
-}
-
-/* Fallback check in case background is saved directly under assets/ */
-@supports not (background-image: url('assets/images/background.png')) {
-  .site-bg-layer {
-    background-image: url('assets/background.png');
-  }
 }
 
 /* ================= 3D LAYERED OFF-WHITE PETALS ================= */
@@ -133,7 +126,7 @@ body {
   100% { height: 8px; } 
 }
 
-/* ================= 1. VIDEO ENVELOPE SCREEN ================= */
+/* ================= 1. VIDEO ENVELOPE THEATRE ================= */
 .envelope-screen {
   position: fixed;
   inset: 0;
@@ -286,31 +279,32 @@ body {
   opacity: 1 !important;
 }
 
-/* Page 1 (Hero) */
+/* HERO PAGE (Fills Initial Screen & Spaces Around Swans) */
 .scroll-page.hero-page {
-  min-height: 94vh;
+  min-height: 96vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 24px 20px 48px 20px;
+  justify-content: space-between; /* Keeps names at top and text below swans */
+  padding: 16px 20px 24px 20px;
 }
 
 .hero-content { 
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center; 
+  text-align: center;
+  margin-top: 4px;
 }
 
-/* Header Image (+50% Scale: Grand Arabic Motif) */
+/* Header Image (Tight with Names) */
 .hero-top-img {
-  width: clamp(210px, 62vw, 320px);
+  width: clamp(210px, 62vw, 310px);
   height: auto;
   object-fit: contain;
-  margin-bottom: 16px;
-  opacity: 0.96;
-  filter: drop-shadow(0 4px 12px rgba(80, 40, 20, 0.18));
+  margin-bottom: -18px; /* Tightly connected to the groom's name */
+  opacity: 0.98;
+  filter: drop-shadow(0 2px 8px rgba(80, 40, 20, 0.16));
 }
 
 .hero-page .groom-name, 
@@ -318,64 +312,81 @@ body {
   font-family: var(--font-script);
   font-size: clamp(3.4rem, 12vw, 4.4rem);
   color: var(--color-garnet);
-  line-height: 1.1;
-  text-shadow: 0 2px 5px rgba(255, 255, 255, 0.6), 0 2px 4px rgba(60, 20, 10, 0.12);
-  margin: 2px 0;
+  line-height: 0.98;
+  text-shadow: 0 2px 6px rgba(255, 255, 255, 0.8), 0 2px 4px rgba(60, 20, 10, 0.15);
+  margin: 0;
 }
+
 .hero-page .and-symbol { 
   font-family: var(--font-serif); 
-  font-size: 1.9rem; 
-  color: var(--color-gold-antique); 
+  font-size: 1.8rem; 
+  color: var(--color-gold-bright); 
+  line-height: 1;
+  margin: 2px 0;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
 }
+
+/* Cluster below the Swans */
+.hero-bottom-cluster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Highly Visible Illuminated Text Under the Swans */
 .getting-married-text { 
   font-family: var(--font-serif); 
   font-style: italic; 
-  font-size: 1.2rem; 
-  color: var(--color-muted-gold); 
-  margin-top: 12px; 
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  font-size: 1.35rem; 
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #5c141d;
+  text-shadow: 
+    0 0 12px rgba(255, 255, 255, 1),
+    0 0 6px rgba(255, 240, 220, 0.95),
+    0 1px 3px rgba(99, 19, 29, 0.35);
 }
 
-/* ================= BOLD & PROMINENT SCROLL INDICATOR ================= */
+/* Royal Gold Scroll Indicator */
 .scroll-indicator { 
-  position: absolute; 
-  bottom: 24px; 
   display: flex; 
   flex-direction: column; 
   align-items: center; 
-  gap: 6px;
-  padding: 8px 18px;
-  background: rgba(255, 253, 248, 0.88);
-  border: 1px solid var(--border-gold-antique);
-  border-radius: 20px;
-  box-shadow: 0 4px 16px rgba(74, 38, 22, 0.12);
-  backdrop-filter: blur(6px);
+  gap: 2px;
+  padding: 6px 18px;
+  background: rgba(45, 16, 20, 0.42);
+  border: 1px solid rgba(223, 183, 108, 0.75);
+  border-radius: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 245, 225, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   animation: bounceIndicator 2.2s infinite ease-in-out; 
 }
 
 .scroll-text {
   font-family: var(--font-cinzel); 
-  font-size: 0.78rem; 
+  font-size: 0.72rem; 
   font-weight: 700;
   letter-spacing: 0.22em; 
-  color: var(--color-garnet);
-}
-
-.scroll-arrow-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: linear-gradient(135deg, #fff4d6 0%, #dfb76c 60%, #b88636 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.7));
 }
 
 .scroll-arrow { 
-  font-size: 1.15rem; 
+  font-size: 1.2rem; 
   font-weight: 700;
-  color: var(--color-gold-antique); 
+  color: #dfb76c; 
+  line-height: 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 @keyframes bounceIndicator { 
   0%, 100% { transform: translateY(0); } 
-  50% { transform: translateY(6px); } 
+  50% { transform: translateY(5px); } 
 }
 
 /* General Page Section Spacing */
