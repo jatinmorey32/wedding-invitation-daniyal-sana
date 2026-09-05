@@ -1,7 +1,7 @@
 /* ================= BESPOKE ARABIC-ROYAL THEME PALETTE ================= */
 :root {
   --bg-sand-warm: #fbf5ef;
-  --color-garnet: #63131d;
+  --color-garnet: #5e111a;
   --color-gold-antique: #b9893d;
   --color-gold-bright: #dfb76c;
   --color-gold-foil: linear-gradient(135deg, #fcedc5 0%, #caa061 50%, #f7e0b5 100%);
@@ -31,7 +31,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ================= FULL-PAGE BACKGROUND ARTWORK (GUARANTEED BOTTOM BLEND) ================= */
+/* ================= FULL-PAGE BACKGROUND ARTWORK ================= */
 .site-bg-layer {
   position: absolute;
   inset: 0;
@@ -44,7 +44,6 @@ body {
   pointer-events: none;
 }
 
-/* Soft gradient blend into page tone */
 .site-bg-layer::after {
   content: "";
   position: absolute;
@@ -60,13 +59,6 @@ body {
     #fbf5ef 100%
   );
   pointer-events: none;
-}
-
-/* Fallback if background.png is directly in assets folder */
-@supports not (background-image: url('assets/images/background.png')) {
-  .site-bg-layer {
-    background-image: url('assets/background.png');
-  }
 }
 
 /* ================= 3D LAYERED OFF-WHITE PETALS ================= */
@@ -304,14 +296,15 @@ body {
   opacity: 1 !important;
 }
 
-/* HERO PAGE */
+/* ================= PAGE 1: HERO (REFINED SPACING & ANCHORING) ================= */
 .scroll-page.hero-page {
-  min-height: 96vh;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px 24px 20px;
+  padding: 12px 20px 24px 20px;
 }
 
 .hero-content { 
@@ -319,59 +312,107 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: 4px;
+  width: 100%;
+  margin-top: 0;
 }
 
 /* Header Calligraphy (Bismillah) */
 .hero-top-img {
-  width: clamp(210px, 62vw, 310px);
+  width: clamp(210px, 64vw, 300px);
   height: auto;
   object-fit: contain;
-  margin-bottom: -18px;
+  margin-bottom: -10px;
   opacity: 0.98;
   filter: drop-shadow(0 2px 8px rgba(80, 40, 20, 0.16));
 }
 
-.hero-page .groom-name, 
+/* Clean Un-Cramped Names Cluster */
+.names-cluster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero-page .groom-name {
+  font-family: var(--font-script);
+  font-size: clamp(3.3rem, 11vw, 4.3rem);
+  color: var(--color-garnet);
+  line-height: 1.08;
+  text-shadow: 0 2px 6px rgba(255, 255, 255, 0.85), 0 2px 4px rgba(60, 20, 10, 0.12);
+  margin-top: -6px;
+  margin-bottom: 2px;
+}
+
 .hero-page .bride-name {
   font-family: var(--font-script);
-  font-size: clamp(3.4rem, 12vw, 4.4rem);
+  font-size: clamp(3.5rem, 12vw, 4.6rem);
   color: var(--color-garnet);
-  line-height: 0.98;
-  text-shadow: 0 2px 6px rgba(255, 255, 255, 0.8), 0 2px 4px rgba(60, 20, 10, 0.15);
-  margin: 0;
+  line-height: 1.08;
+  text-shadow: 0 2px 6px rgba(255, 255, 255, 0.85), 0 2px 4px rgba(60, 20, 10, 0.12);
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+
+/* Balanced Royal Ampersand Ribbon */
+.ampersand-divider {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 220px;
+  margin: 2px 0;
+}
+
+.amp-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(223, 183, 108, 0.7), transparent);
 }
 
 .hero-page .and-symbol { 
   font-family: var(--font-serif); 
-  font-size: 1.8rem; 
+  font-size: 1.6rem; 
+  font-weight: 600;
   color: var(--color-gold-bright); 
   line-height: 1;
-  margin: 2px 0;
-  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(80, 40, 20, 0.2);
 }
 
-/* Cluster below the Swans */
+/* Stable Bottom Cluster Across All Viewports */
 .hero-bottom-cluster {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
+  margin-bottom: 4px;
 }
 
-/* Highly Visible Illuminated Text Under the Swans */
+/* Universal Legibility Pill Ribbon (Guarantees Visibility Above Reflections) */
+.married-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 20px;
+  background: rgba(255, 250, 245, 0.85);
+  border: 1px solid rgba(216, 186, 139, 0.75);
+  border-radius: 20px;
+  box-shadow: 0 4px 14px rgba(74, 38, 22, 0.12);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
 .getting-married-text { 
   font-family: var(--font-serif); 
   font-style: italic; 
-  font-size: 1.35rem; 
+  font-size: clamp(1.1rem, 4vw, 1.25rem);
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #5c141d;
-  text-shadow: 
-    0 0 12px rgba(255, 255, 255, 1),
-    0 0 6px rgba(255, 240, 220, 0.95),
-    0 1px 3px rgba(99, 19, 29, 0.35);
+  letter-spacing: 0.05em;
+  color: var(--color-garnet);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
 }
 
 /* Royal Gold Scroll Indicator */
@@ -381,8 +422,8 @@ body {
   align-items: center; 
   gap: 2px;
   padding: 6px 18px;
-  background: rgba(45, 16, 20, 0.42);
-  border: 1px solid rgba(223, 183, 108, 0.75);
+  background: rgba(45, 16, 20, 0.45);
+  border: 1px solid rgba(223, 183, 108, 0.8);
   border-radius: 24px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 245, 225, 0.3);
   backdrop-filter: blur(8px);
